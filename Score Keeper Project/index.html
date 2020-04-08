@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .winner {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h1><span>0</span> to <span>0</span></h1>
+  <p>Playing to: <span>5</span></p>
+
+  <input type="number" min="1" name="" id="">
+  <button id="p1">Player One</button>
+  <button id="p2">Player Two</button>
+  <button id="reset">Reset</button>
+  
+  <script>
+    let p1Button = document.querySelector("#p1");
+    let p2Button = document.querySelector("#p2");
+    let p1Display = document.querySelector("h1 span:first-child");
+    let p2Display = document.querySelector("h1 span:last-child");
+    let winningScoreDisplay = document.querySelector("p span");
+    let p1Score = 0;
+    let p2Score = 0;
+
+    let winningScore = 5;
+
+    let gameOver = false;
+    let resetButton = document.getElementById("reset");
+    let numImput = document.querySelector("input");
+
+    p1Button.addEventListener("click", function(){
+     if(!gameOver) {
+       p1Score++;
+       if (p1Score === winningScore) {
+          p1Display.classList.add("winner");
+         gameOver = true;
+       };
+      p1Display.textContent = p1Score;
+     };
+    });
+
+    p2Button.addEventListener("click", function(){
+      if(!gameOver) {
+       p2Score++;
+       if (p2Score === winningScore) {
+         p2Display.classList.add("winner");
+         gameOver = true;
+       };
+      p2Display.textContent = p2Score;
+     };
+    });
+
+    resetButton.addEventListener("click", reset());
+
+    numImput.addEventListener("change", function() {
+      winningScoreDisplay.textContent = this.value;
+      winningScore = +this.value;
+      reset();
+    })
+
+    function reset() {
+      p1Score = 0;
+      p2Score = 0;
+      p1Display.textContent = 0;
+      p2Display.textContent = 0;
+      p1Display.classList.remove("winner");
+      p2Display.classList.remove("winner");
+      gameOver = false;
+    }
+  </script>
+</body>
+</html>
