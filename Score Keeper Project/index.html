@@ -56,7 +56,9 @@
      };
     });
 
-    resetButton.addEventListener("click", reset());
+    resetButton.addEventListener("click", function() {
+      reset();
+    });
 
     numImput.addEventListener("change", function() {
       winningScoreDisplay.textContent = this.value;
